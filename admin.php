@@ -4,7 +4,7 @@
  * Backend
  * @author svasti
  * (c) 2015
- * version 1.1
+ * version 1.2
  */
 
 
@@ -13,7 +13,7 @@ if (!defined('CMSIMPLE_XH_VERSION')) {
     exit;
 }
 
-define('MOREPAGEDATA_VERSION', '1.1');
+define('MOREPAGEDATA_VERSION', '1.2.1');
 if (function_exists('XH_registerStandardPluginMenuItems')) {
     XH_registerStandardPluginMenuItems(true);
 }

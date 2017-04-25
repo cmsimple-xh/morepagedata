@@ -2,6 +2,9 @@ MOREPAGEDATA_XH
 ===============
 by svasti
 
+1.2.1 April 2017
+    see <https://github.com/cmsimple-xh/morepagedata/milestone/1?closed=1>
+
 1.2 August 2015
     - Ready for PHP 7 and XH 1.7
     - Code improvements to prevent error messages on installing the plugin on PHP 1.7
