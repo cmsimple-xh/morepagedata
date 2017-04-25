@@ -20,7 +20,9 @@ if (function_exists('XH_registerStandardPluginMenuItems')) {
 /**
  * Plugin administration
  */
-if (isset($morepagedata)) {
+if (function_exists('XH_wantsPluginAdministration') && XH_wantsPluginAdministration('morepagedata')
+    || isset($morepagedata)
+) {
     initvar('admin');
     initvar('action');
     include 'funcs.php';
