@@ -1,0 +1,80 @@
+MOREPAGEDATA_XH
+===============
+by svasti
+
+1.2 August 2015
+    - Ready for PHP 7 and XH 1.7
+    - Code improvements to prevent error messages on installing the plugin on PHP 1.7
+
+1.1 (March 2015)
+    - improved backend display.
+    - bugfix (adding a new field in the backend and having an empty field first would overwrite the template
+      setting in the following variable)
+    - added possibility for default slide show
+    - provided for no javascript to display only one image (through css overflow:hidden)
+    - internal slide show can be disabled to use future external slide shows
+
+1 (August 2014)
+    - admin.css and backend.css to replace stylesheet.css
+    - no more stylesheet.css as morepagedata is purely a backend plugin
+    - bug fix (thx to cmb)
+    - improved help file as suggested by albert
+    - new variables can be added anywhere in variable list, not only at the end
+    - input_field now autogrowing text area,
+      therefore text_area became superfluous and was deleted
+    - admin.php refactored into functions, which have been pout into funcs.php
+    - when a template tries to install already existing morepagedata variables,
+      this is refused, but the template is added to the template list of the variable
+    - Color Picker updated
+    - Updated help file and German help file
+
+1 beta 4 (Dec 2013)
+    - external html files can be added to a page (suggestion of Maik of Jena)
+      these files can be organized in 2 levels (folder + subfolder) 
+    - two stage selection (subfolder + files) in pagedata tab, if subfolders are present.
+    - plugins can be called via option list, will be added at bottom of page (Maik's suggestion too)
+    - title hints added in admin
+    - tool tip entry area auto expanding
+    - lots of adjustments (contributed by cmb) to make Morepagedata compatible to XH 1.6
+
+1 beta 3b
+    - new code supplied by cmb for including his json function for php4
+
+1 beta 3 (Feb 2013)
+    - variables can become "template specific", so that they appear only in the page data
+      tabs of pages of the specified templates
+    - internal variables renamed to form a multidimensional array
+    - variables are now saved as multidimensional json value for better speed
+      and smaller code. For php 4 servers json function by cmb included.
+    - possibility to add morepagedata.csv to templates to provide automatic
+      generation of pagedata variables
+    - morepagedata will scan all templates for these files (when in plugin main) and propose
+      to import and automatically implement these definitions
+    - order of variables can be rearranged
+    - improved checking for name clashing of variables
+    - color values now set to be entered with "#", which allows entering color names	
+    - bug fixing
+
+1 beta 2 (Nov '12)
+    - fixed bug: unchecking checkboxes couldn't be saved. (Got trick from stackoverflow how to do it)
+    - added check if newly added variables are already in use in the pagedata file
+
+1 beta (Oct '12)
+    - deleted the automatic prefix to variables, because it created dummy variables in the
+      pagedata.php
+    - added instead a check if newly added variables are already in use by the system
+
+1 alpha 3 (Sep '12)
+    - change dividers in config2 from , to ; (to be able to use "," in help text)
+    - added field types "input_field", "textarea", "image_folder", "select_hiddenpages"
+    - java script opens in plugin main an extra line for input_field help text
+      and for option_list options (thus more than 1 option lists are possible)
+    - checkbox in plugin main for horizontal line after a field
+    - automatic addition of (editable) prefix to variables to prevent name clashes
+
+1 alpha 2 (September)
+    - added configurable template image path
+    - added strip slashes for names
+    - Danish translation by Jens Maegaard JmNet.dk
+
+version 1 alpha (c)August 2012 by svasti

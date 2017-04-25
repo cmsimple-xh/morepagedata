@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Morepagedata_XH</title>
+<style type="text/css">
+body {background: #eaf4fb; font: normal normal normal 13pt/1.6 'trebuchet MS',sans-serif}
+.notice {margin-left:3em; font-style:italic; color:#050; font-size:92%;}
+.red {color:#400}
+code {white-space:pre;font-family: consolas, 'courier new', monospace; font-weight:bold; font-size: 90%; color:#900;}
+code span {color:#888; font-family:'trebuchet MS',sans-serif}
+body div {width: 990px; margin: 3em auto; background: #49a; border: 5px solid #278; padding: 0;box-shadow: 0em 0em 2em 0em #bbd;}
+body div div {width: 860px; margin: 6px auto; background: #fff; border: 3px solid #8de; padding:  3em 56px;border-radius: 3em;}
+p {margin:1em 0;}
+em, b {font-weight: bold; color:#048;letter-spacing:.05em;}
+.red {color:red;font-weight:bold;}
+h2, h3, h4, h5, h6 {font-family:Georgia, serif;color: #099;margin:1.5em 0 0;}
+h1 {font: normal normal 42pt Garamond, 'Times new roman', serif;margin: 0;color: #068; }
+h1 + h2 {margin:0 0 2em;}
+pre {line-height:1;font-family: consolas,mono;}
+</style>
+</head>
+
+<body>
+
+<div><div>
+<h1>Morepagedata_XH <small>1.2</small></h1>
+<h2>für CMSimple_XH <small><br>
+ab XH 1.5.3</small></h2>
+
+
+<p>Morepagedata nutzt die Pagedata um zusätzliche Daten für jede Seite zu speichern, mit denen man Design-Elemente oder anders steuern kann, wie:</p>
+<ul>
+ <li>Farben vom Menu oder Seitenhintergrund etc.</li>
+ <li>Hintergrundbilder im Seitenkopf etc.</li>
+ <li>andere Änderungen wie Breite des Inhaltsbereichs</li>
+ <li>Newsbox-Inhalte</li>
+ <li>Dia-Shows</li>
+ <li>vordefinierte Pluginaufrufe</li>
+</li>
+</ul>
+
+
+<p>Bei Designänderungen muss allerdings das Template entsprechend vorbereitet werden.</p>
+<p><b>Hinweis:</b> Vor dem Zuweisen von Variablennamen lohnt es sich, die Pagedata über die CMSimple_XH-Standardfunktion zu bereinigen.</p>
+<hr>
+<blockquote>
+<h3>Neu in Version 1.2</h3>
+<p>Bereit für PHP 7 und XH 1.7.</p>
+
+<h3>Neu in Version 1.1</h3>
+<p>Kleine Fehlerberichtigung und verbessertes Backend-Layout. Die Diashow-Variable kann (zukünftige) dafür vorbereitete Plugins ansteuern. Die eingebaute Diashow kann ausschaltet werden. Für die eingebaute Diashow kann man eine Default-Bildserie einstellen, die dann auf allen Seiten erscheint, auf denen keine eigenen Bildfolge festgelegt wurde. Website-Besuchern ohne Javescript wird jetzt nur das erste Bild einer Diashow gezeigt.</p>
+
+<h3>Neu in 1.0</h3>
+<p><b>Textarea, slide_show_effect und html_file <u>gibt es nicht mehr</u></b>. Falls Sie diese Funktionen genutzt haben, sollten Sie nicht auf die neue Version upgraden.
+Version 1.0 ist nur die bereinigte Ausgabe der Vorgängerversion 1 beta 4. <span class="red">Neu:</span> Das input_field ist jetzt selbstwachsend.</p>
+
+ <h3>Update von 1.1, 1.0, 1 beta 3 / beta 4</h3>
+<p>Installieren Sie alles über das vorhandene Plugin. Die wenigen Einstellungen in der config.php <b>müssen Sie neu eingeben</b>.
+Ihre alten Daten bleiben erhalten, weil der Download keine Datendatei beinhaltet.</p>
+<small><p>Folgende Dateien/Ordner der Beta-Versionen werden nicht mehr genutzt und können gelöscht werden:</p>
+<ul>
+ <li>Datei: plugins/morepagedata/texter.php</li>
+ <li>Ordner: plugins/morepagedata/jquery</li>
+ <li>Ordner: plugins/morepagedata/jscolor</li>
+ <li>Ordner: plugins/morepagedata/test</li>
+</ul>
+<p>Gehen sie nach dem Update zum Plugin Backend und klicken Sie auf "speichern", um die neue Einstellung "br" zu initialisieren. "br" (für break) erzeugt eine Leerzeile nach einer Variablen, das war in den Vorversionen voreingestellt. Wenn Sie also den Look der Vorversion wieder haben möchten, müssen sie "br" nach jeder Variable anklicken.</p></small>
+
+<small><h3>Update von 1 beta 2</h3>
+<p>Wie oben, anschließend ins Plugin Backend gehen und dort findet man, dass man die alten Werte mit Klick "importieren" kann.</p>
+<p>Eventuell muss im Template etwas geändert werden, weil der Color Picker jetzt Werte mit <b>vorausgehendem '#'</b> erzeugt.</p>
+<h4>Update von Alpha Versionen</h4>
+<p>Die config2.php im Plugin Config-Ordner mit einem Editor öffnen und jedes "," zu ";" ändern. Dann wie oben verfahren.
+Eventuell müssen Pfade im Template geändert werden, weil diese jetzt im Grundverzeichnis der Site beginnen.
+Pfade für Template Bilder beginnen im Template Ordner.</p></small>
+</blockquote><hr>
+
+<h2>Morepagedata-Plugin entfernen</h2>
+<p>Zuerst alle Variablen löschen, da sie sonst im System bleiben.</p><hr>
+
+
+<h2>Templates für Morepagedata einrichten</h2>
+<h3>Allgemeines Vorgehen</h3>
+<p><span class="red">(1)</span> Zuerst überlegen welche Aspekte des Templates einstellbar werden sollen.<br>
+<span class="red">(2)</span> Dann das Template entsprechend mit <b>neuen PHP-Variablen</b> ergänzen.
+
+
+<p>Wenn Sie CSS-Werte mit Morepagedata ändern wollen, ist es praktisch, dies im
+HTML <code>&lt;head></code>-Bereich des Templates zu machen.</p>
+<p><u>Beispiel:</u> Sie möchten 3 neue Variables nutzen um das Kopfbild (<i>im Beispiel</i> <code>$headimage</code>) und
+die Hintergrundfarbe (<i>im Beispiel</i> <code>$bgcolor</code>) zu variieren,
+und and auf manchen Seiten brauchen Sie einen breiteren Inhaltsbereich (<i>im Beispiel</i> <code>$width</code>).
+Kann könnten Sie folgenden CSS-Code genau vor <code>&lt;/head></code>, dem Ende des Head-Bereichs, einfügen:<br>
+<code>&lt;style type="text/css"&gt;&lt;?php <span>// hier wird die CSS-Definition aufgerufen, und PHP wird sie erzeugen</span>
+    if(isset($headimage)) { <span>// d.h.: wenn $headimage einen Wert hat, tue folgendes</span>
+        echo '#head {background-image:url(' . $pth['folder']['template']
+        . $plugin_cf['morepagedata']['path_template_images'] . $headimage . ');}';
+    }
+    if(isset($bgcolor)) {
+        echo '#body {background-color:'.$bgcolor.';}';
+    }
+    if(isset($width)) { <span>// $width ist in diesem Beispiel vom Typ "checkbox", d.h. entweder an oder aus</span>
+        echo '#content {width:650px;}';
+    }
+?&gt;&lt;/style&gt;</code><br>
+Als Pfad zu den Templatehintergrundbildern ist im Template immer anzugeben<br><code>$pth['folder']['template'] . $plugin_cf['morepagedata']['path_template_images']</code>
+<br>
+
+<p>Was man nicht mit CSS erreichen kann, z.B. das Ändern eines Bildes oder die Ausgabe einer Diashow, wird normalerweise in den <code>body</code>-Teil des
+Templates geschrieben, z.B. für ein Bild:
+<code>
+&lt;?php
+if(isset($myphoto)) {
+    echo '&lt;img src="' . $plugin_cf['morepagedata']['path_image_folder'] . $myphoto . '"&gt;';}
+?&gt;</code><br>
+<small>(Der Pfad wird in der Plugin-Konfiguration angegeben, beginnend von der Basis URL der Website)</small><br>
+Oder für die Diashow:
+<code>
+&lt;?php
+if(isset($slideshow) && !$edit) {
+    echo '&lt;div class="slideshow"&gt;'.slideShowImages($slideshow).'&lt;/div&gt;';}
+?&gt;</code>
+<small><br>(Die Diashow ist nicht sichtbar im Bearbeitungsmodus in diesem Beispiel wegen der Angabe
+<code> && !$edit</code> im Code.)</small></p>
+<p>
+<span class="red">(3)</span> Anschließend <b>diese neuen Variablen</b> in Morepagedata eintragen.
+Morepagedata prüft, ob sie schon vom System genutzt werden.
+Wenn ja, geben Sie Ihrer Variable einen anderen Namen und ändern Sie das auch im Template.</p>
+
+<p>Nach Eintrag der Variabeln im Plugin-Backend, wird diese zu den Pagedata hinzugefügt und ist nicht mehr <b>veränderbar</b>, man kann sie nur noch löschen, was sie auch in den Pagedata löscht.</p>
+<ul>
+<li>Die Anzeige, der Typ und die Optionen können geändert werden.</li>
+<li>Um die Anzeige der Variablen Im Pagedata-Rieter zu gruppieren, kann man eine horizontale Linie (<code>&lt;hr&gt;</code>) nach einer Variablen einstellen.</li>
+<li>Um Variablen nur für bestimmte Templates zu zeigen, die Namen dieser Template im entsprechenden Feld eintragen. Mehrere Namen durch Komma trennen.</li>
+<li>Eingetragener Hilfetext wird als Tool-Tip in der Pagedataansicht gezeigt.</li>
+</ul>
+<hr>
+<h2>Verfügbare Feld-Typen</h2>
+
+<h3>Checkbox</h3>
+<p>Kann irgendetwas an- oder ausschalten, wie in obigem Beispiel die Breite des Inhaltsbereichs.
+Ein anderes Beipiel, um das Einlog-Feld von Memberpages zu zeigen oder nicht zu zeigen:
+<code>
+&lt;?php
+if(isset($memberslogin)) {echo memberslogin();}
+?&gt;</code></p><hr>
+
+<h3>Color picker</h3>
+<p>nutzt Jan Odvárko's <a href="http://jscolor.com" target="_blank">jscolor</a>.
+Color Picker erzeugt Farbcode der mit <code>#</code> anfängt. Statt Farbcode kann man auch englische Farbnamen (z.B.: white, red, blue, green, black) eingeben.
+</p><hr>
+<h3>Image folder</h3>
+<p>zeigt eine Auswahlliste mit allen Bildern aus dem Ordner, der in der Pluginkonfiguration angegeben ist.</p><hr>
+
+<h3>Input field</h3>
+<p>erzeugt einen selbstwachsenden Eingabebereich für Fälle, in denen die anderen Feldtypen zu begrenzt sind.</p><hr>
+
+<h3>Option list</h3>
+<p>Bei Auswahl dieses Typs im Pluginbackend erscheint eine neue Zeile in der man die Optionswerte einträgt, entweder so<br>
+<code>option 1||option 2||option 3</code> oder so<br>
+<code>option 1|angezeigter Text 1|option 2|angezeigter Text 2|option 3|angezeigter Text 3</code> etc.<br>
+Kein <code>|</code> am Ende!</p><hr>
+
+<h3>Plugin call</h3>
+<p>Hier kann man über eine Auswahlliste Plugin-Aufrufe voreinstellen.
+Einen Pluginaufruf ohne <code>{{{PLUGIN:</code> and following <code>;}}}</code> eingeben,
+z.B. einfach nur <code>quoteoftheday()</code>.
+Dahinter ein <code>|</code> einfügen sowie den Text, den der Nutzer in der Auswahlliste zu sehen bekommt (z.B. <code>quoteoftheday()|Zitat des Tages</code>).<br>
+Hinter einem weiteren <code>|</code> kann man einen weiteren Pluginaufruf gefolgt von <code>|</code> und Text schreiben.<br>
+Diese vorgefertigten Pluginaufrufe sind praktisch für unerfahrene Nutzer oder für komplizierte Aufrufe. Die so aufgerufenen Plugins erscheinen
+immer am Seitenende.</p><hr>
+
+<h3>Select hiddenpages</h3>
+<p>erzeugt eine Auswahlliste mit allen versteckten Seiten für die Auswahl des Inhalts einer Newsbox. Der Code mit der Beispielvariablen <code>$news</code> sähe folgendermaßen im Template aus:<br>
+<code>&lt;?php if (isset($news)){echo '&lt;div&gt;'.newsbox($news).'&lt;/div&gt;';}
+else{echo '&lt;div&gt;'.newsbox('News').'&lt;/div&gt;';} ?&gt;
+</code>
+<p>Ein anderes Beispiel für Newsboxen innerhalb eines doppelten divs:<br>
+<code>&lt;?php if (isset($news)):?>
+&lt;div class="news">
+    &lt;div class="newsin">
+        &lt;?php echo newsbox($news);?>
+        &lt;div style="clear: both;">&lt;/div>
+    &lt;/div>
+&lt;/div>
+&lt;?php else:?>
+&lt;div class="news">
+    &lt;div class="newsin">
+        &lt;?php echo newsbox('News');?>
+        &lt;div style="clear: both;">&lt;/div>
+    &lt;/div>
+&lt;/div>
+&lt;?php endif;?></code>
+</p><hr>
+
+<h3>Template image</h3>
+<p>erzeugt eine Auswahlliste mit allen Bildern des Template Ordners. Den Pfad in der Pluginkonfiguration eingeben.</p><hr>
+
+<h3>Slide show</h3>
+<p>nutzt das jQuery Plugin cycle.lite von <a href="http://jquery.malsup.com/cycle/" target="_blank"><b>malsup</b></a>.
+Der Fade-Effect erscheint, wenn mindestens 2 Bilder ausgewählt wurden.
+Dieses jQuery Plugin wird nur geladen, wenn die Diashow auch tatsächlich genutzt wird.
+Wenn Sie die Diashow nicht wollen, wird das Plugin nicht geladen.</p>
+
+<h4>Die Diashow ins Template einbauen</h4>
+<p>Den Pfad zu den Bildern in der Pluginkonfiguration einstellen. Angenommen Ihre Variable lautet <code>$slideshow</code> etwa folgenden Code an die gewünschte Stelle im Template-Body einfügen:<br>
+<code>&lt;?php
+if(isset($slideshow)) {
+    echo '&lt;div class="slideshow"&gt;'.slideShowImages($slideshow).'&lt;/div&gt;';}
+?&gt;</code></p>
+
+<p>Um die Bilder zu zentrieren oder rechtsbündig darstellen zu können (voreingestellt ist linksbündig), stellt Morepagedata alle Bilder in ein &lt;div&gt;.
+Morepagedata erzeugt folgenden Code:
+<code style="white-space:pre">
+&lt;div class="slideshow">
+	&lt;div>&lt;img src="./images/image1.jpg" >&lt;/div>
+	&lt;div>&lt;img src="./images/image2.jpg" >&lt;/div>
+&lt;/div>
+</code>
+</p>
+<p>Um die Bilder zu zentrieren oder rechtsbündig darzustellen benötigt man folgende CSS-Anweisungen:
+<code>
+/* ============= Slideshow ============= */
+.slideshow {
+    float:right;
+    width:350px;
+    height:300px;
+    margin-left:10px;
+}
+.slideshow div {
+    width:350px;
+    height:300px;
+    overflow: hidden;
+}
+.slideshow div img {
+    margin: 0 0 0 auto;  /* this line for right aligned images */
+    margin: auto;        /* or this line for centered images */
+    display:block;
+}
+</code></p><hr>
+
+
+<h2>Hilfetext als Tooltip hinzufügen</h2>
+<p>Bei der Variableneingabe im Pluginbackend kann jeweils eine selbstwachsende Zeile für den Hilfetext sichtbar gemacht werden. Für den Color Picker und die Diashow gibt es automatisch einen Hilfstext und man braucht keinen weiteren Hilfstext mehr einzugeben.</p>
+<hr>
+
+
+<h2>Eine morepagedata.csv für ein Template schreiben</h2>
+<p>Falls Sie Ihr Template an andere weitergeben wollen, möchten Sie vielleicht eine morepagedata.csv beilegen, damit andere leicht Morepagedata mit dem Template nutzen können.
+Erzeugen Sie dazu eine Datei namens morepagedata.csv im Grundverzeichnis des Templates und fügen Sie mit einem Editor Ihre Variablen Zeile für Zeile folgendermaßen ein:</p>
+<p><code>var=</code><b>Variablenname</b><code>;display=</code><b>Anzeige in Pagedataansicht</b><code>;type=</code><b>Funktionstyp der Variablen</b>
+<code>[;options=</code><b>für die Auswahllliste die Optionen folgendermaßen einfügen: option1|text1|option2|text2|option3|text3 oder option1||option2||option3 </b><code>][;help=</code><b>für Hilfetext-Tooltip hier den Text einfügen</b><code>]</code></p>
+<p>Code zwischen <code>[]</code> kann entfallen. Die Reihenfolge für <code>var=</code>, <code>display=</code>, usw. ist egal.</p>
+
+</div>
+</div></div>
+</body>
+</html>

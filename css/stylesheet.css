@@ -1,0 +1,125 @@
+.mpd_configtable {
+    width: 100%;
+    background: #f6f6f6;
+    border: 1px solid #999;
+    padding: 5px 2px 0;
+    color:black;
+}
+.mpd_configtable td,
+.mpd_configtable td input,
+.mpd_configtable td select {
+    font: 1em Consolas, monospace;
+}
+
+.mpd_configtable tr td.right_aligned {
+    text-align:right;
+}
+.mpd_configtable th input {
+    font-weight:bold;
+    letter-spacing:1px;
+}
+.mpd_configtable tr.mpd_darker {
+    background: #ddd;
+}
+.mpd_variable {
+    word-break:break-all;
+    background:inherit;
+    border:none;
+    cursor:default;
+    width:100%;
+    /* font-size:80%; */
+}
+.mpd_variable:before {
+    content:"$";
+}
+
+
+
+.mpd_imagelist img {
+    display:none;
+}
+a.mpd_imagelist:hover img {
+    display:inline-block;
+    position:absolute;
+    left:0;
+    top: 2em;
+    z-index: 5;
+}
+a.mpd_imagelist {
+    position:relative;
+    text-decoration:none;
+}
+
+#morepagedata hr {
+	margin:8px 0;
+    border-color:#eee;
+    background-color:#eee;
+    color:#bbb;
+}
+#morepagedata .mpd_slideshow {
+    height: 5em;
+    width: 100%;
+    margin-bottom: 0px;
+}
+.mpd_fileselect {
+    min-width:40%;
+}
+
+/* the following code is adapted from Opera's Neil Jenkins, from
+http://www.alistapart.com/articles/expanding-text-areas-made-elegant/ */
+#mpd textarea,
+#mpd pre,
+.mpd textarea,
+.mpd pre {
+    margin: 0;
+    padding: 0 !important;
+    outline: 0;
+    border: 0;
+}
+#mpd .expandingArea,
+.mpd .expandingArea {
+    position: relative;
+    border: 1px inset #666;
+    padding:1px 0;
+    background: #fff;
+}
+#mpd .expandingArea > textarea,
+#mpd .expandingArea > pre,
+.mpd .expandingArea > textarea,
+.mpd .expandingArea > pre {
+    padding: 0px;
+    background: transparent;
+    font: normal normal 1em Consolas, monospace;
+    /* Make the text soft-wrap */
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+#mpd .expandingArea > textarea,
+.mpd .expandingArea > textarea {
+    box-sizing: border-box;
+}
+
+#mpd .expandingArea.active > textarea,
+.mpd .expandingArea.active > textarea {
+    /* Hide any scrollbars */
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    /* Remove WebKit user-resize widget */
+    resize: none;
+}
+#mpd .expandingArea > pre,
+.mpd .expandingArea > pre {
+    display: none;
+}
+#mpd .expandingArea.active > pre,
+.mpd .expandingArea.active > pre {
+    display: block;
+    /* We don't actually want to see this text, it's just for sizing */
+    visibility: hidden;
+}
+.slideshow {
+    overflow:hidden;
+}

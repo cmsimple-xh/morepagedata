@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Morepagedata_XH</title>
+<style type="text/css">
+body {background: #eaf4fb; font: normal normal normal 13pt/1.6 'trebuchet MS',sans-serif}
+.notice {margin-left:3em; font-style:italic; color:#050; font-size:92%;}
+.red {color:#400}
+code {white-space:pre;font-family: consolas, 'courier new', monospace; font-weight:bold; font-size: 90%; color:#900;}
+code span {color:#888; font-family:'trebuchet MS',sans-serif}
+body div {width: 990px; margin: 3em auto; background: #49a; border: 5px solid #278; padding: 0;box-shadow: 0em 0em 2em 0em #bbd;}
+body div div {width: 860px; margin: 6px auto; background: #fff; border: 3px solid #8de; padding:  3em 56px;border-radius: 3em;}
+p {margin:1em 0;}
+em, b {font-weight: bold; color:#048;letter-spacing:.05em;}
+.red {color:red;font-weight:bold;}
+h2, h3, h4, h5, h6 {font-family:Georgia, serif;color: #099;margin:1.5em 0 0;}
+h1 {font: normal normal 42pt Garamond, 'Times new roman', serif;margin: 0;color: #068; }
+h1 + h2 {margin:0 0 2em;}
+pre {line-height:1;font-family: consolas,mono;}
+</style>
+</head>
+
+<body>
+
+<div><div>
+<h1>Morepagedata_XH <small>1.2</small></h1>
+<h2>for CMSimple_XH <small><br>
+1.5.3 or higher</small></h2>
+
+
+<p>Morepagedata  lets you set predefined design elements <b>per page</b> without changing the template.</p>
+<ul>
+ <li>Colors of menu or content background etc.</li>
+ <li>Background images in header etc.</li>
+ <li>Newsbox content per page</li>
+ <li>Display a slide show of different images on every page</li>
+ <li>Change other aspects like content width etc. per page with a <br><b>checkbox</b>, <b>options menu</b> or <b>free input field</b> with pop up help</li>
+ <li>Select predefined plugin calls</li>
+</li>
+</ul>
+
+
+<p>Morepagedata does all this by entering new variables into the page data.
+Except for predefined plugin calls, your template has to be prepared accordingly.</p>
+<p><b>Note:</b> Before entering variables it is advisable to clean up the pagedata via the CMSimple_XH standard function.</p>
+<hr>
+<blockquote>
+<h3>New in version 1.2</h3>
+<p>Ready for php 7 and XH 1.7.</p>
+
+<h3>New in version 1.1</h3>
+<p>Small bugfix and improved backend layout. The slideshow variable can be used to drive an external slide show plugin when the internal slide show is switched off. The internal slideshow can take a default image list. For website visitors without java script only the first image will be shown.</p>
+
+<h3>New in 1.0</h3>
+<p><b>Textarea, slide show effect, html file entry <u>are gone</u></b>. If you use these effects don't upgrade.
+Version 1.0 is only a cleaned up version 1 beta 4. <span class="red">New:</span> input_field has become an auto growing textarea.</p>
+
+
+ <h3>Update from 1.0, 1 beta 3 / beta 4</h3>
+<p>Install everything on top of the old plugin. Re-enter your settings in the <code>config.php</code>.
+Your old data will be kept, because the download comes without data file. Delete files/folders form the beta versions:</p>
+<ul>
+ <li>file: plugins/morepagedata/texter.php</li>
+ <li>folder: plugins/morepagedata/jquery</li>
+ <li>folder: plugins/morepagedata/jscolor</li>
+ <li>folder: plugins/morepagedata/test</li>
+</ul>
+<p>Go to the plugin backend and save, because the new variable "br" must be set. "br" (break) adds an empty line after a
+variable in pagedata view, this was standard, now ist is selectable. So if you want to keep the old look, check all "br"s.
+</p>
+<small><h3>Update from 1 beta 2</h3>
+<p>Proceed as above and go to the plugin backend and you will find that you can "import" your old settings. Click on "import" and you are done.</p>
+<p>Some change may be needed in the templates as the color picker will now produce values <b>with preceding '#'</b>.</p>
+<h4>Updates from alpha versions</h4>
+<p>Open  config/config2.php with an editor and change all "," to ";". Then proceed as above.
+You may have to change paths in your template as image paths now start at the site root and template image paths start at the template folder.</p></small>
+</blockquote><hr>
+
+<h2>Removing Morepagedata plugin</h2>
+<p>Before removing the plugin delete all variables first, otherwise they remain in the page data.</p><hr>
+
+
+<h2>Preparing templates for morepagedata</h2>
+<h3>General procedure</h3>
+<p><span class="red">(1)</span> First decide which aspects of your template you want to make changeable.<br>
+<span class="red">(2)</span> Then prepare your template accordingly with some <b>new php-variables.</b>
+<p>If you want to change css-values with morepagedata, it is practical to do this in the html head of the template.</p>
+<p><u>Example:</u> You want to introduce 3 new variables to control the head image (e.g.: <code>$headimage</code>), the background color (e.g.: <code>$bgcolor</code>) and on some pages you need more content width (e.g.: <code>$width</code>). Add the following css-code just before the end of the head section <code>&lt;/head&gt;</code>:<br>
+<code>&lt;style type="text/css"&gt;&lt;?php   <span>// here the css-definition is called, and php will generate it</span>
+    if(isset($headimage)) {    <span>// i.e.: if a $headimage value has been entered via page data tab, do this</span>
+        echo '#head {background-image:url(' . $pth['folder']['template']
+        . $plugin_cf['morepagedata']['path_template_images'] . $headimage . ');}';
+    }
+    if(isset($bgcolor)) {
+        echo '#body {background-color:'.$bgcolor.';}';
+    }
+    if(isset($width)) {        <span>// $width in this example is type "checkbox", so its value is only on (=set) or off</span>
+        echo '#content {width:650px;}';
+    }
+?&gt;&lt;/style&gt;</code><br>
+<u>Note:</u> The path to the template background images is <br><code>$pth['folder']['template'] . $plugin_cf['morepagedata']['path_template_images']</code>
+<br>
+
+<p>What cannot be done in css, like changing images or slide shows, is usually written into the body section of the template, 
+e.g. for an image:
+<code>
+&lt;?php
+if(isset($myphoto)) {
+    echo '&lt;img src="' . $plugin_cf['morepagedata']['path_image_folder'] . $myphoto . '"&gt;';}
+?&gt;</code><br>
+<small>(The path is set in plugin config starting from the base URL of the site)</small><br>
+or for the slideshow:
+<code>
+&lt;?php
+if(isset($slideshow) && !$edit) {
+    echo '&lt;div class="slideshow"&gt;'.slideShowImages($slideshow).'&lt;/div&gt;';}
+?&gt;</code>
+<small><br>(The slide show will not be visible in edit mode in this example because of the addition of <code> && !$edit</code> in the code.)</small></p>
+<p>
+<span class="red">(3)</span> Finally <b>enter these new variables</b> as new fields in Morepagedata plugin main settings.
+Morepagedata will check if these new variables are already in use by the system.
+If this is the case, you should give your variable in the template a different name and try again to enter it.</p>
+
+<p>After entering and saving a new variable in the plugin backend, the variable will be added to the page data and <b>changing the variable will be disabled.</b>
+You can however delete it, which will delete the variable in page data as well.</p>
+<ul>
+<li>Display, type and options can always be edited freely.</li>
+<li>To group the display of the variables in the page data tab, you can add a horizontal line (<code>&lt;hr&gt;</code>) to be displayed after a field.</li>
+<li>To display a variable only for certain templates, enter the template names in the respective field. Separate more than one template by comma.</li>
+<li>You can also enter a help text, which will be displayed as a tool tip in the page data tab.</li>
+<li>To move a variable up in the page data tab, click on the arrow in the variables table.</li>
+</ul>
+<hr>
+<h2>Available field types</h2>
+
+<h3>Checkbox</h3>
+<p>Can switch something predefined on or off, like in the above example where the width is set via checkbox to wide.
+Another example, switching the log in form of memberpages on or off:
+<code>
+&lt;?php
+if(isset($memberslogin)) {echo memberslogin();}
+?&gt;</code></p><hr>
+
+<h3>Color picker</h3>
+<p>uses Jan Odvárko's <a href="http://jscolor.com" target="_blank">jscolor</a>.
+It is preset to add <code>#</code> to the color code, so that color names can also be entered.
+</p><hr>
+<h3>Image folder</h3>
+<p>presents an option list with all the images from a folder specified in plugin config.</p><hr>
+
+<h3>Input field</h3>
+<p>provides an auto growing text area for free input, in case all other field types are too restricted.</p><hr>
+
+<h3>Option list</h3>
+<p>On selecting this type an additional line will appear in plugin backend for entering the options as either<br>
+<code>option 1||option 2||option 3</code> or<br>
+<code>option 1|shown_text 1|option 2|shown text 2|option 3|shown text 3</code> etc.<br>
+No <code>|</code> at the end!</p><hr>
+
+<h3>Plugin call</h3>
+<p>Via the option list in the plugin backend you can define a plugin call.
+Enter the plugin call without preceding <code>{{{PLUGIN:</code> and following <code>;}}}</code>,
+e.g. you may enter <code>quoteoftheday()</code>.
+Add a <code>|</code> and enter the text which the user will see in the
+option list to select this option (e.g. <code>quoteoftheday()|Quote of the Day</code>).<br>
+After another <code>|</code> you can enter the next plugin option followed by <code>|</code> and text.<br>
+These predefined plugin calls are useful for the inexperienced user or for complicated calls. Plugins called this way will appear at the bottom of a page.</p><hr>
+
+<h3>Select hiddenpages</h3>
+<p>gives an option list with all hidden pages to facilitate selection of the contents of a newsbox. The code using the variable <code>$news</code> could be in the template:<br>
+<code>&lt;?php if (isset($news)){echo '&lt;div&gt;'.newsbox($news).'&lt;/div&gt;';}
+else{echo '&lt;div&gt;'.newsbox('News').'&lt;/div&gt;';} ?&gt;
+</code>
+<p>An example for newsboxes with a styled div around them:<br>
+<code>&lt;?php if (isset($news)):?>
+&lt;div class="news">
+    &lt;div class="newsin">
+        &lt;?php echo newsbox($news);?>
+        &lt;div style="clear: both;">&lt;/div>
+    &lt;/div>
+&lt;/div>
+&lt;?php else:?>
+&lt;div class="news">
+    &lt;div class="newsin">
+        &lt;?php echo newsbox('News');?>
+        &lt;div style="clear: both;">&lt;/div>
+    &lt;/div>
+&lt;/div>
+&lt;?php endif;?></code>
+</p><hr>
+
+<h3>Template image</h3>
+<p>presents an option list with all the images of the templates folder. Path can be set in plugin config.</p><hr>
+
+<h3>Slide show</h3>
+<p>uses the jQuery plugin cycle.lite by <a href="http://jquery.malsup.com/cycle/" target="_blank"><b>malsup</b></a>.
+The fade effect will be displayed as soon as at least 2 images are selected.
+The jQuery plugin will only be loaded, when the slide show is used.
+So if you don't want the slide show, the plugin will not load it.</p>
+
+<h4>Putting the slide show into the template</h4>
+<p>Specify the path to the images in plugin config. If your variable is <code>$slideshow</code> enter into your template some code similar to this:<br>
+<code>&lt;?php
+if(isset($slideshow)) {
+    echo '&lt;div class="slideshow"&gt;'.slideShowImages($slideshow).'&lt;/div&gt;';}
+?&gt;</code></p>
+
+<p>In order to be able to center or right align the images (default = left aligned), all the images are wrapped into a &lt;div&gt; by morepagedata.
+The resulting source code will be something like:
+<code style="white-space:pre">
+&lt;div class="slideshow">
+	&lt;div>&lt;img src="./images/image1.jpg" >&lt;/div>
+	&lt;div>&lt;img src="./images/image2.jpg" >&lt;/div>
+&lt;/div>
+</code>
+</p>
+<p>Css example for centered or right aligned images:
+<code>
+/* ============= Slideshow ============= */
+.slideshow {
+    float:right;
+    width:350px;
+    height:300px;
+    margin-left:10px;
+}
+.slideshow div {
+    width:350px;
+    height:300px;
+    overflow: hidden;
+}
+.slideshow div img {
+    margin: 0 0 0 auto;  /* this line for right aligned images */
+    margin: auto;        /* or this line for centered images */
+    display:block;
+}
+</code></p><hr>
+
+
+<h2>Adding help text as tool tip</h2>
+<p>The extra line for help text can switched on or off for all variables in plugin backend. For color picker and slide show a prepared help text from the language file will be used automatically and no extra help text has to be entered.</p>
+<hr>
+
+
+<h2>Creating a morepagedata.csv for your template</h2>
+<p>If you want to give your template to others, you may want to add a morepagedata.csv to it, so that other users can easily use the morepagedata.
+Create a new file named morepagedata.csv and enter your variables line by line this way:</p>
+<p><code>var=</code><b>Name of your
+variable</b><code>;display=</code><b>What
+should be displayed in the page data field</b><code>;type=</code><b>Type
+of your variable</b>
+<code>[;options=</code><b>for option list, enter the options here as: option1|text1|option2|text2|option3|text3 or option1||option2||option3 </b><code>][;help=</code><b>for tooltip enter the text here</b><code>]</code></p>
+<p>Code between <code>[]</code> is optional. The order of the entries is free. Put this file into the main folder of your template.</p>
+
+</div>
+</div></div>
+</body>
+</html>

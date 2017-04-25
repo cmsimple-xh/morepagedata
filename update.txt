@@ -1,0 +1,5 @@
+Update from version 1.1, 1.0, 1beta3, 1beta4:
+install on top of old version.
+
+Some older files can be deleted. 
+See update instructions in the help files for details.
