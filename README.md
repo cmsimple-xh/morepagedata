@@ -8,7 +8,7 @@ necessary maintenance (at least do some odd fixes), and release new versions
 from time to time.
 
 [![stable: 1.2.1](https://img.shields.io/badge/stable-1.2.1-green.svg)](https://github.com/cmsimple-xh/morepagedata/releases/tag/1.2.1)
-[![License: CC BY-SA 3.0](https://img.shields.io/badge/License-CC%20BY%20SA%203.0-blue.svg)](https://creativecommons.org/licenses/by-sa/3.0/)
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 
 
 For further information see help/help.htm.
