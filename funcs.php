@@ -355,8 +355,7 @@ $mpd_copyright = "<h2>Morepagedata_XH\n"
                . '</span></h2>'."\n"
                . '<p id="license" style="display:none;">'
                . 'This plugin is free software under the terms of the GNU General Public License v. 3 or '
-               . 'later, analog to <a href="' . $sn . '?' . uenc($cf['menu']['legal']) . '">'
-               . $cf['menu']['legal'] . '</a>'. tag('br'). tag('br')
+               . 'later.<br><br>'
                . '<small><b>Acknowledgements:</b>'.tag('br')
                . 'Code of <a href="http://jscolor.com/" target="_blank">JSColor</a> by Jan Odvárko (CZ),
                  and of json-functions for php4 by Christoph Becker <a href="http://3-magi.net/" target="_blank">(cmb)</a>'. tag('br')
