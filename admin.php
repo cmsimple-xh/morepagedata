@@ -23,8 +23,6 @@ if (function_exists('XH_registerStandardPluginMenuItems')) {
 if (function_exists('XH_wantsPluginAdministration') && XH_wantsPluginAdministration('morepagedata')
     || isset($morepagedata)
 ) {
-    initvar('admin');
-    initvar('action');
     include 'funcs.php';
     $o .= print_plugin_admin('on');
 
