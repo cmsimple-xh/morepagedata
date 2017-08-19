@@ -7,7 +7,7 @@ to put the plugin here, so that the CMSimple_XH developers are able to do the
 necessary maintenance (at least do some odd fixes), and release new versions
 from time to time.
 
-[![stable: 1.2.1](https://img.shields.io/badge/stable-1.2.1-green.svg)](https://github.com/cmsimple-xh/morepagedata/releases/tag/1.2.1)
+[![stable: 1.2.2](https://img.shields.io/badge/stable-1.2.2-green.svg)](https://github.com/cmsimple-xh/morepagedata/releases/tag/1.2.2)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 
 
