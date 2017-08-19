@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Morepagedata" default="help">
+
+    <target name="build" description="builds distributable ZIP archive">
+        <fail unless="version" message="version is not defined!"/>
+        <exec command="git archive -o export.tar HEAD" checkreturn="true"/>
+        <untar file="export.tar" todir="export"/>
+        <delete file="export.tar"/>
+        <move todir="dist">
+            <fileset dir="export">
+                <include name="admin.php"/>
+                <include name="**/*.*"/>
+                <exclude name="build.xml"/>
+                <exclude name="composer.*"/>
+                <exclude name="pax_global_header"/>
+                <exclude name="README.md"/>
+            </fileset>
+        </move>
+        <delete dir="export"/>
+        <zip destfile="morepagedata_XH_${version}.zip" basedir="dist" prefix="morepagedata/"/>
+        <delete dir="dist"/>
+    </target>
+
+</project>
