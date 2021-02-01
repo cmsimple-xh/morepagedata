@@ -16,7 +16,10 @@ if (!defined('CMSIMPLE_XH_VERSION')) {
 function morepagedata_view($page){
 	global $cf, $c, $cl, $h, $hjs, $bjs, $l, $plugin_cf, $plugin_tx, $pth, $sl, $sn, $su, $tx, $u, $pd_router, $txc;
 
-    $mpd = json_decode(file_get_contents($pth['folder']['plugins'].'morepagedata/config/config2.php'),true);
+    $filename = $pth['folder']['plugins'].'morepagedata/config/config2.php';
+    if (!is_readable($filename) || !is_array($mpd = json_decode(file_get_contents($filename),true))) {
+        return '<p>'.$plugin_tx['morepagedata']['pagedata_nothing'].'</p>';
+    }
 
     // load js color picker -- if needed
     if(in_array('color_picker',$mpd['type'])) {
