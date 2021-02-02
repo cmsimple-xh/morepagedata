@@ -36,7 +36,7 @@ if (function_exists('XH_wantsPluginAdministration') && XH_wantsPluginAdministrat
         }
 
         // read the stored data, $raw_mpd is re-used in detecting values of former versions
-        $raw_mpd = file_get_contents($pth['folder']['plugins'].'morepagedata/config/config2.php');
+        $raw_mpd = file_get_contents($pth['folder']['content'].'morepagedata.json');
         $mpd = json_decode($raw_mpd,true);
 
         // Plugin main view

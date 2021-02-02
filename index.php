@@ -45,8 +45,8 @@ function getPageDataFields()
 
 
 // Get the field arrays
-$mpd = is_file($pth['folder']['plugins'].'morepagedata/config/config2.php')
-    ? json_decode(file_get_contents($pth['folder']['plugins'].'morepagedata/config/config2.php'),true)
+$mpd = is_file($pth['folder']['content'].'morepagedata.json')
+    ? json_decode(file_get_contents($pth['folder']['content'].'morepagedata.json'),true)
     : array('var'=>array());
 
 // Add used interests to router
