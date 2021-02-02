@@ -3,7 +3,7 @@
 function mpd_CheckFiles()
 {
     global $pth;
-    $file = $pth['folder']['plugins'].'morepagedata/config/config2.php';
+    $file = $pth['folder']['content'].'morepagedata.json';
 
     if(!is_file($file) || filesize($file)<10) {
         if(!file_put_contents($file, '{"var":[""],"display":[""],"type":[""],"hr":[""],"br":[1],"options":[""],"help":[""],"template":[""]}')) {
@@ -37,7 +37,7 @@ function mpd_receivePostData()
     $newmpd['template']      =isset($_POST['mpd']['template'])? $_POST['mpd']['template']      : array();
 
     // load the old data to check for existing var
-    $mpd = json_decode(file_get_contents($pth['folder']['plugins'].'morepagedata/config/config2.php'),true);
+    $mpd = json_decode(file_get_contents($pth['folder']['content'].'morepagedata.json'),true);
     if($mpd == null) $mpd = array();
 
     // a little clean up
@@ -181,7 +181,7 @@ function mpd_receivePostData()
 
     // SAVE to file
     //==============
-    file_put_contents($pth['folder']['plugins'] . 'morepagedata/config/config2.php',json_encode($newmpd));
+    file_put_contents($pth['folder']['content'].'morepagedata.json',json_encode($newmpd));
 
     return $o;
 }
